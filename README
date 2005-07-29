@@ -27,7 +27,7 @@ DESCRIPTION
     an intelligent default of using $self->query() as the default data
     source.
 
-    If the query is used as the data source, we will delete the mode param
+    If the query is used as the data source, we will ignore the mode param
     (usually 'rm') from the query object. This prevents accidently
     clobbering a run mode for the next field, which may be stored in a
     hidden field.

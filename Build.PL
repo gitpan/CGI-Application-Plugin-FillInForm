@@ -11,7 +11,7 @@ my $builder = Module::Build->new(
     create_readme       => 1,
     requires => {
         'Test::More'        => 0,
-        'HTML::FillInForm'  => 0,
+        'HTML::FillInForm'  => 1.05,
     },
     add_to_cleanup      => [ 'CGI-Application-Plugin-FillInForm-*' ],
 );

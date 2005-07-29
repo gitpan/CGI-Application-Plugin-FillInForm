@@ -3,7 +3,7 @@ use strict;
 require Exporter;
 use vars (qw/@ISA @EXPORT_OK $VERSION/);
 
-$VERSION = 1.0_1;
+$VERSION = 1.0_2;
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(fill_form);
 
@@ -39,7 +39,7 @@ convenient.
 This method provides an easier syntax for calling HTML::FillInForm, and an
 intelligent default of using $self->query() as the default data source.
 
-If the query is used as the data source, we will delete the mode param (usually
+If the query is used as the data source, we will ignore the mode param (usually
 'rm') from the query object. This prevents accidently clobbering a run mode for
 the next field, which may be stored in a hidden field. 
 
@@ -70,8 +70,10 @@ sub fill_form {
     die "data must be a hash or object reference";
   }
   else {
-      $self->query->delete( $self->mode_param() );
-      my @params = (fobject =>  $self->query);
+      my @params = (
+          fobject =>  $self->query,
+          ignore_fields => [ $self->mode_param() ], 
+      );
   }
 
   require HTML::FillInForm;

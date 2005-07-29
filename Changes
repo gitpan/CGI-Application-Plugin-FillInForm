@@ -1,5 +1,9 @@
 Revision history for CGI-Application-Plugin-FillInForm
 
+1.00_2  07/29/05
+    - Ignore 'rm' instead of deleting it. 
+    - require HTML::FillInForm 1.05 for good measure.
+
 1.00_1   07/28/05 
-        First version, released on an unsuspecting world.
+    - First version, released on an unsuspecting world.
 

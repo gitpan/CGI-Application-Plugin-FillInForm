@@ -5,7 +5,7 @@ WriteMakefile
           'NAME' => 'CGI::Application::Plugin::FillInForm',
           'VERSION_FROM' => 'lib/CGI/Application/Plugin/FillInForm.pm',
           'PREREQ_PM' => {
-                           'HTML::FillInForm' => '0',
+                           'HTML::FillInForm' => '1.05',
                            'Test::More' => '0'
                          },
           'INSTALLDIRS' => 'site',

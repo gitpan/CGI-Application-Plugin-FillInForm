@@ -1,9 +1,21 @@
 Revision history for CGI-Application-Plugin-FillInForm
 
+1.10    07/31/05
+    - clarified the docs about multiple data sources
+    - upped the version number so this package cleanly supercedes all
+      previous versions.
+
+1.00_3  07/31/05 (unreleased)
+    - now can accept list of data sources (Michael Graham)
+    - added tests (Michael Graham)
+    - fixed bug where $data was being ignored
+    - attempt to re-flag this version as a developer release by changing
+      version from 1.0_3 to 1.00_3
+
 1.00_2  07/29/05
-    - Ignore 'rm' instead of deleting it. 
+    - Ignore 'rm' instead of deleting it.
     - require HTML::FillInForm 1.05 for good measure.
 
-1.00_1   07/28/05 
+1.00_1   07/28/05
     - First version, released on an unsuspecting world.
 

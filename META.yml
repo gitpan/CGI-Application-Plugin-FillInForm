@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name: CGI-Application-Plugin-FillInForm
-version: 1.02
+version: 1.10
 author:
   - Mark Stosberg <mark@summersault.com>
 abstract: integrate with HTML::FillInForm
@@ -11,5 +11,5 @@ requires:
 provides:
   CGI::Application::Plugin::FillInForm:
     file: lib/CGI/Application/Plugin/FillInForm.pm
-    version: 1.02
-generated_by: Module::Build version 0.2611
+    version: 1.10
+generated_by: Module::Build version 0.2607

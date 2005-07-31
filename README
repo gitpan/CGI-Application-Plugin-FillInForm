@@ -15,14 +15,18 @@ DESCRIPTION
 
   fill_form()
      # fill an HTML form with data in a hashref or from an object with with a param() method
-     my $filled_html = $self->fill_form($html,$data);
+     my $filled_html = $self->fill_form($html, $data);
 
-     # ..or default to getting data from $self->query()
+     # ...or fill from a list of data sources
+     # (each item in the list can be either a hashref or an object)
+     my $filled_html = $self->fill_form($html, [$user, $group, $query]);
+
+     # ...or default to getting data from $self->query()
      my $filled_html = $self->fill_form($html);
 
      # extra fields will be passed on through:
-     my $filled_html = $self->fill_form($html,undef, fill_passwords => 0 );
-  
+     my $filled_html = $self->fill_form($html, undef, fill_passwords => 0 );
+
     This method provides an easier syntax for calling HTML::FillInForm, and
     an intelligent default of using $self->query() as the default data
     source.
@@ -42,10 +46,7 @@ DESCRIPTION
 
 AUTHORS
      Cees Hek published the first draft on the CGI::App wiki
-     Mark Stosberg, C<< <mark@summersault.com> >> polished it for release. 
-
-TODO
-     * Write some tests for it. 
+     Mark Stosberg, C<< <mark@summersault.com> >> polished it for release.
 
 BUGS
     Please report any bugs or feature requests to

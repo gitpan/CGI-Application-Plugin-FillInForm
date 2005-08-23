@@ -8,6 +8,7 @@ WriteMakefile
           'VERSION_FROM' => 'lib/CGI/Application/Plugin/FillInForm.pm',
           'PREREQ_PM' => {
                            'Test::More' => 0,
+                           'CGI::Application' => 0,
                            'HTML::FillInForm' => '1.05'
                          }
         )

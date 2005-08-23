@@ -76,6 +76,8 @@ my $FiF_Fill_Args;
         my $html = 'test html';
         my (%fif_params);
 
+        $self->mode_param('rm_bar') ;
+        $self->query->param('rm_bar' => 'bubba');
 
         # Test filling with hashref (\%data)
         my %data = (
@@ -90,9 +92,11 @@ my $FiF_Fill_Args;
         $self->fill_form(\$html, \%data, %options);
         %fif_params = @$FiF_Fill_Args;
 
-        my $fdat    = delete $fif_params{'fdat'};
+        my $fdat          = delete $fif_params{'fdat'};
+        my $ignore_fields = delete $fif_params{'ignore_fields'};
 
         ok(eq_hash($fdat, \%data),                        '[data] fdat');
+        ok(eq_array($ignore_fields, ['rm_bar']),          '[obj] ignore_fields ');
         is(delete $fif_params{'scalarref'}, \$html,       '[data] scalarref');
         is(delete $fif_params{'dopt1'},     'doptvalue1', '[data] dopt1');
         is(delete $fif_params{'dopt2'},     'doptvalue2', '[data] dopt2');
@@ -109,15 +113,17 @@ my $FiF_Fill_Args;
             'popt2' => 'poptvalue2',
         );
 
+
         $self->fill_form(\$html, $param_obj, %options);
         %fif_params = @$FiF_Fill_Args;
 
-        my $fobject = delete $fif_params{'fobject'};
-
-        $fobject = $fobject->[0] if ref $fobject eq 'ARRAY';
+        my $fobject    = delete $fif_params{'fobject'};
+        $ignore_fields = delete $fif_params{'ignore_fields'};
+        $fobject       = $fobject->[0] if ref $fobject eq 'ARRAY';
 
         is(delete $fif_params{'scalarref'}, \$html,       '[obj] scalarref');
         is($fobject,                        $param_obj,   '[obj] fobj');
+        ok(eq_array($ignore_fields, ['rm_bar']),          '[obj] ignore_fields ');
         is(delete $fif_params{'popt1'},     'poptvalue1', '[obj] popt1');
         is(delete $fif_params{'popt2'},     'poptvalue2', '[obj] popt2');
         ok(!keys  %fif_params,                            '[obj] no params unaccounted for');
@@ -158,11 +164,13 @@ my $FiF_Fill_Args;
         $self->fill_form(\$html, [$param_obj3, \%data2, \%data2, $param_obj1, $param_obj2, \%data1], %options);
         %fif_params = @$FiF_Fill_Args;
 
-        $fobject = delete $fif_params{'fobject'};
-        $fdat    = delete $fif_params{'fdat'};
+        $fobject       = delete $fif_params{'fobject'};
+        $fdat          = delete $fif_params{'fdat'};
+        $ignore_fields = delete $fif_params{'ignore_fields'};
 
         ok(eq_array($fobject, [$param_obj3, $param_obj1, $param_obj2]), '[list] fobject list');
         ok(eq_hash($fdat,  {%data2, %data1}),             '[list] fdat merged hash');
+        ok(eq_array($ignore_fields, ['rm_bar']),          '[obj] ignore_fields ');
 
         is(delete $fif_params{'scalarref'}, \$html,       '[list] scalarref');
         is(delete $fif_params{'lopt1'},     'loptvalue1', '[list] lopt1');
@@ -179,10 +187,10 @@ my $FiF_Fill_Args;
 
         $fobject          = delete $fif_params{'fobject'};
         $fdat             = delete $fif_params{'fdat'};
-        my $ignore_fields = delete $fif_params{'ignore_fields'};
+        $ignore_fields    = delete $fif_params{'ignore_fields'};
 
         ok(eq_array($fobject,       $self->query),        '[none] fobject is query');
-        ok(eq_array($ignore_fields, ['rm_foo']),          '[none] fobject is query');
+        ok(eq_array($ignore_fields, ['rm_foo']),          '[none] ignore_fields');
 
         is(delete $fif_params{'scalarref'},     \$html,   '[none] scalarref');
         ok(!keys  %fif_params,                            '[none] no params unaccounted for');

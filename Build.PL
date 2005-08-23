@@ -10,9 +10,10 @@ my $builder = Module::Build->new(
     create_makefile_pl  => 'traditional',
     create_readme       => 1,
     requires => {
-        'Test::More'        => 0,
-        'HTML::FillInForm'  => 1.05,
-    },
+        'Test::More'       => 0,
+        'HTML::FillInForm' => 1.05,
+        'CGI::Application' => 0,
+    },                             
     add_to_cleanup      => [ 'CGI-Application-Plugin-FillInForm-*' ],
 );
 

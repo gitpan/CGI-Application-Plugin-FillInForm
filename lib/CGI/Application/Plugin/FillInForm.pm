@@ -3,7 +3,7 @@ use strict;
 require Exporter;
 use vars (qw/@ISA @EXPORT_OK $VERSION/);
 
-$VERSION = '1.10';
+$VERSION = '1.12_01';
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(fill_form);
 use Carp;
@@ -44,11 +44,12 @@ convenient.
 This method provides an easier syntax for calling HTML::FillInForm, and an
 intelligent default of using $self->query() as the default data source.
 
-If the query is used as the data source, we will ignore the mode param (usually
-'rm') from the query object. This prevents accidently clobbering a run mode for
-the next field, which may be stored in a hidden field.
+By default, the mode param (usually 'rm') of every data source will be
+ignored. This prevents accidently clobbering your run mode for the next
+page, which may be stored in a hidden field.
 
 B<$html> must be a scalarref.
+B<$filled_html> will be a reference to a string.
 
 Because this method only loads HTML::FillInForm if it's needed, it should be
 reasonable to load it in a base class and always have it available:
@@ -65,7 +66,9 @@ sub fill_form {
 
     die "html must be a scalarref!" unless (ref $html eq 'SCALAR');
 
-    my %params;
+    my %params = (
+        ignore_fields => [ $self->mode_param()],
+    );
     my (@fdat, @fobject);
 
     if ($data) {
@@ -119,15 +122,13 @@ sub fill_form {
     else {
         # If no data sources are specified, then use
         # $self->query
-        %params = (
-            fobject       =>  $self->query,
-            ignore_fields => [ $self->mode_param()],
-        );
+        $params{'fobject'} = $self->query;
     }
 
     require HTML::FillInForm;
     my $fif = new HTML::FillInForm;
-    return $fif->fill(scalarref => $html, %params, %extra_params);
+    my $output = $fif->fill(scalarref => $html, %params, %extra_params);
+    return \$output;
 }
 
 =head1 AUTHORS

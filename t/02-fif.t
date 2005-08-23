@@ -45,6 +45,9 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
     sub start {
         my $self = shift;
 
+        $self->mode_param('rm_foo') ;
+        $self->query->param('rm_foo' => 'bubba');
+
         my $blank_form = qq{
             <form>
             <input name="data_var1"   value="">
@@ -108,13 +111,14 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             data_var2   => 'value2',
         );
 
-        form_data_ok(\$output, %form_data,  '[data] form data ok');
+        form_data_ok($output, %form_data,  '[data] form data ok');
 
         # Test filling with object ($param_obj)
         my $param_obj = Dummy_Param->new(
             'param_var1'  => 'value1',
             'param_var2'  => 'value2',
             'param_var3'  => 'value3',
+            'rm_foo'      => 'bubbles',
         );
 
         $html = $blank_form;
@@ -125,8 +129,9 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             param_var1   => 'value1',
             param_var2   => 'value2',
             param_var3   => 'value3',
+            rm_foo       => 'original_rm',
         );
-        form_data_ok(\$output, %form_data,  '[obj] form data ok');
+        form_data_ok($output, %form_data,  '[obj] form data ok');
 
         # Test filling with a list (mixed data and objects)
 
@@ -134,26 +139,31 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             'param_varA1'  => 'pvalueA1',
             'param_varA2'  => 'pvalueA2',
             'param_varA3'  => 'pvalueA3',
+            'rm_foo'       => 'bubbles',
         );
         my $param_obj2 = Dummy_Param->new(
             'param_varA1'  => 'pvalueB1x',
             'param_varB1'  => 'pvalueB1',
             'param_varB2'  => 'pvalueB2',
             'param_varB3'  => 'pvalueB3',
+            'rm_foo'       => 'bubbles2',
         );
         my $param_obj3 = Dummy_Param->new(
             'param_varC1'  => 'pvalueC1',
             'param_varC2'  => 'pvalueC2',
             'param_varC3'  => 'pvalueCB3',
+            'rm_foo'       => 'bubbles3',
         );
         my %data1 = (
             'data_varB1' => 'dvalueA1x',
             'data_varA1' => 'dvalueA1',
             'data_varA2' => 'dvalueA2',
+            'rm_foo'     => 'bubbles4',
         );
         my %data2 = (
             'data_varB1' => 'dvalue1',
             'data_varB2' => 'dvalue2',
+            'rm_foo'     => 'bubbles5',
         );
 
         $html = $blank_form;
@@ -176,8 +186,9 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             'data_varA1' => 'dvalueA1',
             'data_varA2' => 'dvalueA2',
             'data_varB1' => 'dvalueA1x',
+            rm_foo       => 'original_rm',
         );
-        form_data_ok(\$output, %form_data,  '[list] form data ok');
+        form_data_ok($output, %form_data,  '[list] form data ok');
 
 
         # Test filling with no data sources - should default to query, but
@@ -194,7 +205,7 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             'rm_foo'      => 'original_rm',
             'param_var1'  => 'query_value1',
         );
-        form_data_ok(\$output, %form_data,  '[none] form data ok');
+        form_data_ok($output, %form_data,  '[none] form data ok');
 
 
     }

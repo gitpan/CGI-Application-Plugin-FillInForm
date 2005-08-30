@@ -46,6 +46,8 @@ DESCRIPTION
 AUTHORS
      Cees Hek published the first draft on the CGI::App wiki
      Mark Stosberg, C<< <mark@summersault.com> >> polished it for release.
+     Michael Graham, C<< <mag-perl@occamstoothbrush.com> >> added tests and some new features.
+     The module is now co-maintained by Mark and Michael.
 
 BUGS
     Please report any bugs or feature requests to

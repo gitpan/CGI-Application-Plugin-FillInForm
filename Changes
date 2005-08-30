@@ -1,5 +1,9 @@
 Revision history for CGI-Application-Plugin-FillInForm
 
+1.12 08/30/05
+    - added Michael Graham to list of maintainers in docs to reduce
+      confusion over which is the official version
+
 1.12_01 08/23/05
     - To conserve memory, fill_form now returns a reference to the HTML
       output instead of a copy of it (Cees Hek).

@@ -3,7 +3,7 @@ use strict;
 require Exporter;
 use vars (qw/@ISA @EXPORT_OK $VERSION/);
 
-$VERSION = '1.12_01';
+$VERSION = '1.12';
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(fill_form);
 use Carp;
@@ -135,6 +135,8 @@ sub fill_form {
 
  Cees Hek published the first draft on the CGI::App wiki
  Mark Stosberg, C<< <mark@summersault.com> >> polished it for release.
+ Michael Graham, C<< <mag-perl@occamstoothbrush.com> >> added tests and some new features.
+ The module is now co-maintained by Mark and Michael.
 
 =head1 BUGS
 

@@ -1,5 +1,10 @@
 Revision history for CGI-Application-Plugin-FillInForm
 
+1.13 09/01/05
+    - fixed a test failure when using an older version of HTML::FillInForm
+    - added dist/prove_prereqs.pl for testing with older versions of
+      prerequisite modules.  See the source of that script file for info.
+
 1.12 08/30/05
     - added Michael Graham to list of maintainers in docs to reduce
       confusion over which is the official version

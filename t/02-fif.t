@@ -188,8 +188,11 @@ $ENV{'CGI_APP_RETURN_ONLY'} = 1;
             'data_varB1' => 'dvalueA1x',
             rm_foo       => 'original_rm',
         );
-        form_data_ok($output, %form_data,  '[list] form data ok');
-
+        SKIP:
+        {
+            skip "Installed HTML::FillInForm does not support ignore fields with fdat - upgrade to version 1.04", 1 if $HTML::FillInForm::VERSION < 1.04;
+            form_data_ok($output, %form_data,  '[list] form data ok');
+        }
 
         # Test filling with no data sources - should default to query, but
         # not override the run mode param ('rm_foo')

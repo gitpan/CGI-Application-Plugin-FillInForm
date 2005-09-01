@@ -1,4 +1,4 @@
-# This is a list of regular expressions of files to skip when rebuilding 
+# This is a list of regular expressions of files to skip when rebuilding
 # the MANIFEST file. See the documention for the ExtUtils::Manifest module for more detail. -mls
 \bCVS\b
 ^MANIFEST\.bak$
@@ -24,5 +24,6 @@
 _darcs
 _build
 ^Build$
+t/prereq_scenarios
 
 

@@ -9,7 +9,7 @@ WriteMakefile
           'PREREQ_PM' => {
                            'Test::More' => 0,
                            'CGI::Application' => 0,
-                           'HTML::FillInForm' => '1.05'
+                           'HTML::FillInForm' => '1'
                          }
         )
 ;

@@ -102,6 +102,33 @@ my $FiF_Fill_Args;
         is(delete $fif_params{'dopt2'},     'doptvalue2', '[data] dopt2');
         ok(!keys  %fif_params,                            '[data] no params unaccounted for');
 
+
+        # Same, but use a reference to the reference of the input $html
+        %data = (
+            'data_var1' => 'value1',
+            'data_var2' => 'value2',
+        );
+        %options = (
+            'dopt1' => 'doptvalue1',
+            'dopt2' => 'doptvalue2',
+        );
+
+        my $html_ref = \$html;
+        $self->fill_form(\$html_ref, \%data, %options);
+        %fif_params = @$FiF_Fill_Args;
+
+        $fdat          = delete $fif_params{'fdat'};
+        $ignore_fields = delete $fif_params{'ignore_fields'};
+
+        ok(eq_hash($fdat, \%data),                        '[data (html ref)] fdat');
+        ok(eq_array($ignore_fields, ['rm_bar']),          '[obj (html ref)] ignore_fields ');
+        is(delete $fif_params{'scalarref'}, \$html,       '[data (html ref)] scalarref');
+        is(delete $fif_params{'dopt1'},     'doptvalue1', '[data (html ref)] dopt1');
+        is(delete $fif_params{'dopt2'},     'doptvalue2', '[data (html ref)] dopt2');
+        ok(!keys  %fif_params,                            '[data (html ref)] no params unaccounted for');
+
+
+
         # Test filling with object ($param_obj)
         my $param_obj = Dummy_Param->new(
             'param_var1'  => 'value1',

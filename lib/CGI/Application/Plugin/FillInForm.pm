@@ -3,7 +3,7 @@ use strict;
 require Exporter;
 use vars (qw/@ISA @EXPORT_OK $VERSION/);
 
-$VERSION = '1.13';
+$VERSION = '1.14';
 @ISA = qw(Exporter);
 @EXPORT_OK = qw(fill_form);
 use Carp;
@@ -48,7 +48,7 @@ By default, the mode param (usually 'rm') of every data source will be
 ignored. This prevents accidently clobbering your run mode for the next
 page, which may be stored in a hidden field.
 
-B<$html> must be a scalarref.
+B<$html> must be a scalarref, or a reference to a scalarref.
 B<$filled_html> will be a reference to a string.
 
 Because this method only loads HTML::FillInForm if it's needed, it should be
@@ -64,6 +64,9 @@ sub fill_form {
     my $data = shift;
     my %extra_params = @_;
 
+    if (ref $html eq 'REF' and ref $$html eq 'SCALAR') {
+        $html = $$html;
+    }
     die "html must be a scalarref!" unless (ref $html eq 'SCALAR');
 
     my %params = (

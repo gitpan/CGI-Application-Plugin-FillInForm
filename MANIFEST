@@ -1,5 +1,7 @@
 Build.PL
+CAP-FillInForm.html
 Changes
+changes.txt
 lib/CGI/Application/Plugin/FillInForm.pm
 Makefile.PL
 MANIFEST			This list of files
@@ -8,8 +10,10 @@ META.yml
 misc/dist
 misc/makedocs.pl
 misc/prove_prereqs.pl
+misc/prove_prereqs.sh
 misc/style.css
 README
+readme.txt
 t/00.load.t
 t/01-fif-args.t
 t/02-fif.t

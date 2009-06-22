@@ -1,11 +1,10 @@
 package CGI::Application::Plugin::FillInForm;
+use base 'Exporter';
 use strict;
-require Exporter;
-use vars (qw/@ISA @EXPORT_OK $VERSION/);
+use warnings;
 
-$VERSION = '1.14';
-@ISA = qw(Exporter);
-@EXPORT_OK = qw(fill_form);
+our $VERSION = '1.15';
+our @EXPORT_OK = qw(fill_form);
 use Carp;
 
 =head1 NAME
@@ -39,7 +38,7 @@ convenient.
  my $filled_html = $self->fill_form($html);
 
  # extra fields will be passed on through:
- my $filled_html = $self->fill_form($html, undef, fill_passwords => 0 );
+ my $filled_html = $self->fill_form($html, undef, fill_password => 0 );
 
 This method provides an easier syntax for calling HTML::FillInForm, and an
 intelligent default of using $self->query() as the default data source.
@@ -78,7 +77,7 @@ sub fill_form {
 
         $data = [$data] unless ref $data eq 'ARRAY';
 
-        foreach my $source (@$data) {
+        for my $source (@$data) {
             if (ref $source eq 'HASH') {
                 push @fdat, $source;
             }
@@ -103,8 +102,8 @@ sub fill_form {
         if (@fdat) {
             if (@fdat > 1) {
                 my %merged;
-                foreach my $hash (@fdat) {
-                    foreach my $key (keys %$hash) {
+                for my $hash (@fdat) {
+                    for my $key (keys %$hash) {
                         $merged{$key} = $hash->{$key};
                     }
                 }

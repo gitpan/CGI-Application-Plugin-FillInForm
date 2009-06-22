@@ -25,7 +25,7 @@ DESCRIPTION
      my $filled_html = $self->fill_form($html);
 
      # extra fields will be passed on through:
-     my $filled_html = $self->fill_form($html, undef, fill_passwords => 0 );
+     my $filled_html = $self->fill_form($html, undef, fill_password => 0 );
 
     This method provides an easier syntax for calling HTML::FillInForm, and
     an intelligent default of using $self->query() as the default data

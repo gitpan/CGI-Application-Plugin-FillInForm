@@ -1,6 +1,6 @@
----
+--- #YAML:1.0
 name: CGI-Application-Plugin-FillInForm
-version: 1.14
+version: 1.15
 author:
   - Michael Graham <magog@the-wire.com>
   - Mark Stosberg <mark@summersault.com>
@@ -15,5 +15,5 @@ recommends:
 provides:
   CGI::Application::Plugin::FillInForm:
     file: lib/CGI/Application/Plugin/FillInForm.pm
-    version: 1.14
+    version: 1.15
 generated_by: Module::Build version 0.2611

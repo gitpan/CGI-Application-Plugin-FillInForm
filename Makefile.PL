@@ -2,14 +2,14 @@
 use ExtUtils::MakeMaker;
 WriteMakefile
 (
-          'PL_FILES' => {},
-          'INSTALLDIRS' => 'site',
           'NAME' => 'CGI::Application::Plugin::FillInForm',
           'VERSION_FROM' => 'lib/CGI/Application/Plugin/FillInForm.pm',
           'PREREQ_PM' => {
-                           'Test::More' => 0,
-                           'CGI::Application' => 0,
-                           'HTML::FillInForm' => '1'
-                         }
+                           'CGI::Application' => '0',
+                           'HTML::FillInForm' => '1',
+                           'Test::More' => '0'
+                         },
+          'INSTALLDIRS' => 'site',
+          'PL_FILES' => {}
         )
 ;

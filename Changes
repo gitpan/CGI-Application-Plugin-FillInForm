@@ -1,5 +1,9 @@
 Revision history for CGI-Application-Plugin-FillInForm
 
+1.15 06/22/09
+    (No code changes)
+    - Fix "fill_password" typo (Fred Steinberg)
+
 1.14 09/13/05
     - added Michael Graham to dist_author in Build.PL
     - lowered prereq of HTML::FillInForm to 1.00
